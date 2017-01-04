@@ -18,3 +18,13 @@ Feature: Roundcube should work
       | recipient | martijn@brixit.nl      |
       | subject   | Test email vanaf behat |
       | body      | HALLOOO                |
+
+  Scenario: Check if the password change plugin exists
+    When I log in
+    And I go to task "settings" action "plugin.password"
+    Then I should have the element "#newpasswd"
+
+  Scenario: Check if spamassassin plugin exists
+    When I log in
+    And I go to task "settings" action "plugin.sauserprefs"
+    Then I should have the element "#rcmrowbayes"

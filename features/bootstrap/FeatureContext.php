@@ -158,7 +158,7 @@ class FeatureContext implements Context {
 
     // Get the hidden roundcube form information
     $html = $page->getHtml();
-    $re = '/"identities":{"(\d+)"/';
+    $re = '/"identities":{"([^"]+)"/';
     preg_match($re, $html, $matches);
     $sender = $matches[1];
     $re = '/"compose_id":"([^"]+)"/';
