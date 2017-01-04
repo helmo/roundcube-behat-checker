@@ -137,5 +137,65 @@ class FeatureContext implements Context {
     }
   }
 
+  /**
+   * @When I submit the email page with the information:
+   */
+  public function iSubmitTheEmailPageWithTheInformation(TableNode $table) {
+
+    $page = $this->session->getPage();
+
+    $parameter = [
+      'cc' => '',
+      'bcc' => '',
+      'reply to' => '',
+      'subject' => ''
+    ];
+    // Parse the parameter table
+    foreach ($table->getColumnsHash() as $row) {
+      $parameter[$row['field']] = $row['value'];
+    }
+
+
+    // Get the hidden roundcube form information
+    $html = $page->getHtml();
+    $re = '/"identities":{"(\d+)"/';
+    preg_match($re, $html, $matches);
+    $sender = $matches[1];
+    $re = '/"compose_id":"([^"]+)"/';
+    preg_match($re, $html, $matches);
+    $compose_id = $matches[1];
+
+    $token = $page->find('css', 'input[name=_token]');
+    $token = $token->getAttribute('value');
+
+
+    // Rebuild the form submission
+    $post = [
+      '_token' => $token,
+      '_task' => 'mail',
+      '_action' => 'send',
+      '_id' => $compose_id,
+      '_attachments' => '',
+      '_from' => $sender,
+      '_to' => $parameter['recipient'],
+      '_cc' => $parameter['cc'],
+      '_bcc' => $parameter['bcc'],
+      '_replyto' => $parameter['reply to'],
+      '_subject' => $parameter['subject'],
+      '_priority' => 0,
+      '_store_target' => 'INBOX.Sent',
+      '_draft_saveid' => '',
+      '_draft' => '',
+      '_is_html' => 0,
+      '_framed' => 1,
+      '_message' => $parameter['body']
+    ];
+
+    $this->session->getDriver()
+      ->getClient()
+      ->request('POST', $this->roundcubeUrl . '?_task=mail', $post);
+
+  }
+
 
 }

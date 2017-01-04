@@ -13,3 +13,8 @@ Feature: Roundcube should work
     When I log in
     And I go to task "mail" action "compose"
     Then I should have the element "#composeoptions"
+    When I submit the email page with the information:
+      | field     | value                  |
+      | recipient | martijn@brixit.nl      |
+      | subject   | Test email vanaf behat |
+      | body      | HALLOOO                |
