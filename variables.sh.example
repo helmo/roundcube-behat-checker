@@ -1,0 +1,2 @@
+export ROUNDCUBE_USER="username"
+export ROUNDCUBE_PASSWD="password"

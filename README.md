@@ -5,8 +5,11 @@
 ```bash
 # git checkout somewhere
 $ composer install
+$ cp variables.sh.example variables.sh
 $ vendor/bin/behat
 ```
+
+Edit the login information in the variables.sh file
 
 ## Nagios config
 

@@ -3,6 +3,8 @@
 # Get into the correct dir
 cd `dirname $0`
 
+source ./variables.sh
+
 # Run tests, discard the output.
 ./vendor/bin/behat > /dev/null
 
