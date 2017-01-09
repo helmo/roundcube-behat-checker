@@ -6,7 +6,7 @@ cd `dirname $0`
 source ./variables.sh
 
 # Run tests, discard the output.
-./vendor/bin/behat > /dev/null
+./vendor/bin/behat -n --strict --stop-on-failure > /dev/null
 
 # Capture the return value.
 RETURN=$?
