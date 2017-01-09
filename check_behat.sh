@@ -15,15 +15,7 @@ if [ $RETURN == 0 ]
 then
     echo "OK - Behat test successful"
     exit 0
-#elif [ ??? ]
-#then
-#    echo "WARNING- $output"
-#    exit 1
-elif [ $RETURN == 1]
-then
+else
     echo "CRITICAL - Behat gave error"
     exit 2
-else
-       echo "UNKNOWN- ??? bebat ???"
-       exit 3
 fi
