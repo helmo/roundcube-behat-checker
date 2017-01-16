@@ -2,7 +2,7 @@ Feature: Roundcube should work
 
   Background:
     Given there is an roundcube server at "https://www.initfour.nl/roundcube/"
-    And there is an account "brixit" with the password "GQxPGRv"
+    And there is an account defined by the environment
 
   Scenario: Logging in
     When I log in
