@@ -1,7 +1,7 @@
 Feature: Roundcube should work
 
   Background:
-    Given there is an roundcube server at "https://www.initfour.nl/roundcube/"
+    Given there is an roundcube server at "https://www.example.com/roundcube/"
     And there is an account defined by the environment
 
   Scenario: Logging in
@@ -15,9 +15,9 @@ Feature: Roundcube should work
     Then I should have the element "#composeoptions"
     When I submit the email page with the information:
       | field     | value                  |
-      | recipient | martijn@brixit.nl      |
-      | subject   | Test email vanaf behat |
-      | body      | HALLOOO                |
+      | recipient | nagios@example.com     |
+      | subject   | Test email from behat  |
+      | body      | Hello world            |
 
   Scenario: Check if the password change plugin exists
     When I log in

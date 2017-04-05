@@ -10,6 +10,8 @@ $ vendor/bin/behat
 ```
 
 Edit the login information in the variables.sh file
+Edit the url and email settings in features/roundcube.feature (TODO, add to variables.sh)
+
 
 ## Nagios config
 
