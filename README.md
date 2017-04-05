@@ -1,17 +1,25 @@
 # Roundcube checker
 
-## Install / Execute
+## Install
 
 ```bash
 # git checkout somewhere
 $ composer install
 $ cp variables.sh.example variables.sh
-$ vendor/bin/behat
 ```
 
-Edit the login information in the variables.sh file
-Edit the url and email settings in features/roundcube.feature (TODO, add to variables.sh)
+* Edit the login information in the variables.sh file
+* Edit the url and email settings in features/roundcube.feature (TODO, add these to variables.sh)
 
+## Usage
+
+Use the `check_behat.sh` script to tun the tests.
+
+For more output you can call behat directly.
+
+```
+$ vendor/bin/behat
+```
 
 ## Nagios config
 
@@ -35,3 +43,7 @@ define service{
 }
 
 ```
+
+## About
+
+This project was developed by [Initfour websolutions](https://www.initfour.nl/) and [BrixIT](https://brixit.nl/).
