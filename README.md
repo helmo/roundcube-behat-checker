@@ -12,6 +12,7 @@ $ cp variables.sh.example variables.sh
 
 * Edit the login information in the variables.sh file
 * Edit the url and email settings in features/roundcube.feature (TODO, add these to variables.sh)
+* Ensure that the webmail user gets the Interface skin 'Larry'.
 
 ## Usage
 
@@ -21,6 +22,45 @@ For more output you can call behat directly.
 
 ```
 $ vendor/bin/behat
+```
+
+
+## Icinga config
+
+Here's an example Nagios configuration.
+To use the passive check you need some script that either receives the mail or reads mailserver logs, and sends a passive result to Icinga.
+
+```
+object CheckCommand "check_behat_roundcube" {
+        command = [ "/var/lib/nagios/src/roundcube-behat-checker/check_behat.sh" ]
+        arguments = {   }
+}
+```
+
+```
+apply Service "behat-roundcube-active"  {
+  import "generic-service"
+
+  display_name = "Behat Roundcube active"
+
+  check_interval = 1h
+  retry_interval = 10m
+
+  check_command = "check_behat_roundcube"
+
+  assign where host.name == "mail.example.com"
+}
+apply Service "behat-roundcube-passive"  {
+  import "generic-passive-service"
+
+  check_interval = 7d
+  vars.notification_interval = 1d
+  display_name = "Behat Roundcube - passive result"
+  vars.dummy_text = generate_passive_dummy_text("$host.name$", "$service.name$")
+
+  assign where host.name == "mail.example.com"
+}
+
 ```
 
 ## Nagios config
