@@ -13,6 +13,7 @@ $ cp variables.sh.example variables.sh
 * Edit the login information in the variables.sh file
 * Edit the url and email settings in features/roundcube.feature (TODO, add these to variables.sh)
 * Ensure that the webmail user gets the Interface skin 'Larry'.
+* The last two steps in features/roundcube.feature depend on roundcube plugings, disable or extend to match your setup.
 
 ## Usage
 
