@@ -51,8 +51,8 @@ class FeatureContext implements Context {
    * @Given there is an account defined by the environment
    */
   public function thereIsAnAccountDefinedByTheEnvironment() {
-    $this->username = $_ENV['ROUNDCUBE_USER'];
-    $this->password = $_ENV['ROUNDCUBE_PASSWD'];
+    $this->username = getenv('ROUNDCUBE_USER');
+    $this->password = getenv('ROUNDCUBE_PASSWD');
   }
 
   /**
