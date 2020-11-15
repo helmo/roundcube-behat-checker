@@ -34,9 +34,14 @@ class FeatureContext implements Context {
 
   /**
    * @Given there is an roundcube server at :url
+   *
+   * Override wih the environment variable ROUNDCUBE_URL
    */
   public function thereIsAnRoundcubeServerAt($url) {
     $this->roundcubeUrl = $url;
+    if (getenv('ROUNDCUBE_URL')) {
+      $this->roundcubeUrl = getenv('ROUNDCUBE_URL');
+    }
   }
 
   /**
@@ -160,7 +165,12 @@ class FeatureContext implements Context {
     ];
     // Parse the parameter table
     foreach ($table->getColumnsHash() as $row) {
-      $parameter[$row['field']] = $row['value'];
+      if (!empty(getenv('ROUNDCUBE_' . $row['field']))) {
+        $parameter[$row['field']] = getenv('ROUNDCUBE_' . $row['field']);
+      }
+      else {
+        $parameter[$row['field']] = $row['value'];
+      }
     }
 
 

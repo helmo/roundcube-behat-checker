@@ -1,2 +1,6 @@
 export ROUNDCUBE_USER="username"
 export ROUNDCUBE_PASSWD="password"
+export ROUNDCUBE_URL="https://www.example.com/webmail/"
+export ROUNDCUBE_RECIPIENT="passiveresult@example.com"
+export ROUNDCUBE_SUBJECT="Roundcube mail via behat"
+export ROUNDCUBE_BODY="Foo"
