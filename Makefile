@@ -3,15 +3,14 @@
 NAME=roundcube-behat-checker
 VERSION=latest
 
-include .env
-export $(shell sed 's/=.*//' .env)
+include variables.sh
 
 build:
 	docker build -t $(NAME):$(VERSION) .
 
 run:
 
-	docker run --rm -e USERNAME=$(USERNAME) -e PASSWORD=$(PASSWORD) -e URL=$(URL) $(NAME):$(VERSION)
+	docker run --rm $(NAME):$(VERSION)
 
 clean:
 	docker rmi $(NAME):$(VERSION)
