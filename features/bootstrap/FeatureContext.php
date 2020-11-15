@@ -161,12 +161,12 @@ class FeatureContext implements Context {
       'cc' => '',
       'bcc' => '',
       'reply to' => '',
-      'subject' => ''
+      'subject' => '',
     ];
     // Parse the parameter table
     foreach ($table->getColumnsHash() as $row) {
-      if (!empty(getenv('ROUNDCUBE_' . $row['field']))) {
-        $parameter[$row['field']] = getenv('ROUNDCUBE_' . $row['field']);
+      if (!empty(getenv('ROUNDCUBE_' . strtoupper($row['field'])))) {
+        $parameter[$row['field']] = getenv('ROUNDCUBE_' . strtoupper($row['field']));
       }
       else {
         $parameter[$row['field']] = $row['value'];
