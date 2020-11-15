@@ -9,4 +9,3 @@ composer.phar
 
 /features/bootstrap/test.html
 /variables.sh
-/.env
